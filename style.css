@@ -97,7 +97,7 @@ figcaption {
 }
 
 .contact-link:hover {
-    transform: trnaslateY(8px);
+    transform: translateY(8px);
 }
 
 footer {
