@@ -3,6 +3,11 @@
     padding: 0;
 }
 
+html {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
 @font-face {
     font-family: 'LorinExtraBold';
     src: url(./fonts/Lorin-ExtraBold.ttf);
@@ -27,7 +32,7 @@ body {
     text-decoration: none;
     color: #fefefe;
     display: block;
-    font-size: 1.5rem;
+    /*font-size: 1.5rem;*/
     padding: 1rem;
 }
 
@@ -83,13 +88,31 @@ figcaption {
     color: #cccccc;
 }
 
-.contactLinks a {
+.contact-link {
+    display: inline-block;
+    padding: 1rem;
     text-decoration: none;
     color: #fefefe;
+    transition: transform 0.3s ease-out;
+}
+
+.contact-link:hover {
+    transform: trnaslateY(8px);
 }
 
 footer {
     text-align: center;
     background-color: #A5A692;
     padding: 1rem;
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 70%;
+    }
+
+    #welcome-section {
+        background-color: #555555;
+        color: #fff;
+    }
 }
