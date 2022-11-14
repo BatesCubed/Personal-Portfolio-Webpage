@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Bungee', cursive;
+    background-color: black;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+figure {
+    margin: 2rem;
+}
+
+figure img {
+    max-height: 12rem;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    width: 10rem;
+    height: 4rem;
+    margin: 1rem;
+    background-color: #e0d310;
+    color: rgb(247, 247, 247);
+    font-size: 0.8rem;
+}
+
+h1 {
+    text-align: center;
+    font-size: 4rem;
+    color: #e0d310;
+}
+
+figcaption {
+    color: white;
+    text-align: center;
+    font-size: 0.8rem;
+}
