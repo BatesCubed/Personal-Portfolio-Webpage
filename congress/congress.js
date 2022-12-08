@@ -57,6 +57,18 @@ const simplifiedReps = simplifiedMembers(representatives)
 function populateMembersDiv(memberArray) {
     removeChildren(membersDiv)
     memberArray.forEach(member => {
+        const scene = document.createElement('div')
+        scene.className = 'scene'
+        const card = document.createElement('div')
+        card.className = 'card'
+        card.addEventListener('click', () => {
+            console.log('You clicked? Why?')
+            card.classList.toggle('is-flipped')
+        })
+
+        const cardFront = document.createElement('div')
+        cardFront.className = 'card_face card_face--front'
+
         const figure = document.createElement('figure')
         const figImg = document.createElement('img')
         const figCaption = document.createElement('figcaption')
@@ -66,8 +78,25 @@ function populateMembersDiv(memberArray) {
 
         figCaption.textContent = member.name
 
+
         figure.appendChild(figImg)
         figure.appendChild(figCaption)
-        membersDiv.appendChild(figure)
+        cardFront.appendChild(figure)
+        card.appendChild(cardFront)
+        card.appendChild(populateCardBack(member))
+        scene.appendChild(card)
+        membersDiv.appendChild(scene)
     })
 }
+
+function populateCardBack(member) {
+    const cardBack = document.createElement('div')
+    cardBack.className = 'card_face card_face--back'
+    const details = document.createElement('h4')
+    details.textContent = member.dateOfBirth
+
+    cardBack.appendChild(details)
+    return cardBack
+}
+
+populateMembersDiv(simplifiedSenators)
