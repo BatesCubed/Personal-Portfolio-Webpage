@@ -10,19 +10,38 @@ const seniorMemberSpan = document.querySelector('#seniorMember')
 const vacationerSpan = document.querySelector('#vacationer')
 const loyalMemberList = document.querySelector('#loyalMembers')
 
-const mostSeniorMember = simplifiedMembers(allCongressMembers).reduce((acc, member) => {
-    return acc.seniority > member.seniority ? acc : member
+const partyReset = document.querySelector('#partyReset')
+partyReset.addEventListener('click', () => {
+    const partyButtons = document.querySelectorAll('input[name="party"]')
+    partyButtons.forEach((button) => (button.checked = false))
+    configurator()
 })
 
-const biggestVacationer = simplifiedMembers(allCongressMembers).reduce((acc, member) => {
+const genderReset = document.querySelector('#genderReset')
+genderReset.addEventListener('click', () => {
+    const genderButtons = document.querySelectorAll('input[name="gender"]')
+    genderButtons.forEach((button) => (button.checked = false))
+    configurator()
+})
+
+const mostSeniorMember = simplifiedMembers(allCongressMembers).reduce(
+    (acc, member) => {
+        return acc.seniority > member.seniority ? acc : member
+    },
+)
+const biggestVacationer = simplifiedMembers(allCongressMembers).reduce(
+    (acc, member) => {
     return acc.missedVotesPct > member.missedVotesPct ? acc : member
-})
+    },
+)
 
-const mostLoyalMembers = simplifiedMembers(allCongressMembers).filter(member => {
+const mostLoyalMembers = simplifiedMembers(allCongressMembers).filter(
+    member => {
     return member.loyaltyPct === 100
-})
+    },
+)
 
-mostLoyalMembers.forEach(member => {
+mostLoyalMembers.forEach((member) => {
     let listItem = document.createElement('li')
     listItem.textContent = member.name
     loyalMemberList.appendChild(listItem)
@@ -33,7 +52,9 @@ vacationerSpan.textContent = `${biggestVacationer.name} ${biggestVacationer.miss
 
 /*This is the section for configuring filters*/
 const allInputs = document.querySelectorAll('input')
-allInputs.forEach(input => input.addEventListener('change', () => configurator()))
+allInputs.forEach((input) =>
+    input.addEventListener('change', () => configurator()),
+    )
 
 function configurator() {
     let configuredArray = []
@@ -56,20 +77,22 @@ function configurator() {
 }
 /* End of Configuration Array Section*/
 function simplifiedMembers(memberArray) {
-    return memberArray.map(member => {
-        const middleName = member.middle_name ? ` ${member.middle_name} ` : ` `
+    return memberArray.map((member) => {
+        const middleName = member.middle_name ? ` ${member.middle_name} ` : ` ` // ternary operator FTW!
         return {
-            id: member.id,
-            name: ` ${member.first_name}${middleName}${member.last_name}`,
-            dateOfBirth: member.date_of_birth,
-            gender: member.gender,
-            party: member.party,
-            imgURL: `https://www.govtrack.us/static/legislator-photos/${member.govtrack_id}-200px.jpeg`,
-            seniority: member.seniority,
-            missedVotesPct: member.missed_votes_pct,
-            loyaltyPct: member.votes_with_party_pct
+          id: member.id,
+          name: `${member.first_name}${middleName}${member.last_name}`,
+          dateOfBirth: member.date_of_birth,
+          gender: member.gender,
+          party: member.party,
+          imgURL: `https://www.govtrack.us/static/legislator-photos/${member.govtrack_id}-200px.jpeg`,
+          seniority: +member.seniority,
+          missedVotesPct: member.missed_votes_pct,
+            loyaltyPct: member.votes_with_party_pct,
+            state: member.state,
+          rank: member.state_rank
         }
-    })
+      })
 }
 
 const simplifiedSenators = simplifiedMembers(senators)
@@ -77,31 +100,35 @@ const simplifiedReps = simplifiedMembers(representatives)
 
 function populateMembersDiv(memberArray) {
     removeChildren(membersDiv)
-    memberArray.forEach(member => {
-        const scene = document.createElement('div')
-        scene.className = 'scene'
-        const card = document.createElement('div')
-        card.className = 'card'
-        if (member.party === 'R') card.className = 'card republican'
-        if (member.party === 'D') card.className = 'card democrat'
-        card.addEventListener('click', () => {
-            console.log('You clicked? Why?')
-            card.classList.toggle('is-flipped')
+  memberArray.forEach((member) => {
+    const scene = document.createElement('div')
+    scene.className = 'scene'
+    const card = document.createElement('div')
+    card.className = 'card'
+    // if (member.party === 'R') card.className = 'card republican'
+    // if (member.party === 'D') card.className = 'card democrat'
+    card.addEventListener('click', () => {
+      console.log('You clicked?')
+      card.classList.toggle('is-flipped')
         })
 
         const cardFront = document.createElement('div')
-        cardFront.className = 'card_face card_face--front'
-
+        cardFront.className = 'card__face card__face--front'
+    
         const figure = document.createElement('figure')
         const figImg = document.createElement('img')
-        const figCaption = document.createElement('figcaption')
-
+          const figCaption = document.createElement('figcaption')
+          if (member.party === 'R') figCaption.className = 'republican'
+          if (member.party === 'D') figCaption.className = 'democrat'
+    
         figImg.src = member.imgURL
-        figImg.addEventListener('error', () => figImg.src = '../images/emperor-palpatine.jpeg')
-
+        figImg.addEventListener(
+          'error',
+          () => (figImg.src = '../images/emperor-palpatine.jpeg'),
+        )
+    
         figCaption.textContent = member.name
-
-
+    
         figure.appendChild(figImg)
         figure.appendChild(figCaption)
         cardFront.appendChild(figure)
@@ -109,17 +136,25 @@ function populateMembersDiv(memberArray) {
         card.appendChild(populateCardBack(member))
         scene.appendChild(card)
         membersDiv.appendChild(scene)
-    })
+      })
 }
 
 function populateCardBack(member) {
     const cardBack = document.createElement('div')
     cardBack.className = 'card_face card_face--back'
     const details = document.createElement('h4')
-    details.textContent = member.dateOfBirth
+    details.className = 'details'
+    details.textContent =  `Date of Birth: ${member.dateOfBirth}`
+
+    const membersState = document.createElement('h3')
+    membersState.textContent = `State: ${member.state}`
+    const memberRank = document.createElement('h3')
+    memberRank.textContent = `Rank: ${member.rank[0].toUpperCase}${member.rank.slice(1)}`
 
     cardBack.appendChild(details)
+    cardBack.appendChild(membersState)
+    cardBack.appendChild(memberRank)
     return cardBack
 }
 
-populateMembersDiv(simplifiedSenators)
+//populateMembersDiv(simplifiedSenators)
