@@ -1,4 +1,5 @@
 import { people } from '../data/people.js'
+import { removeChildren, getLastNumber } from '../utils.js'
 
 const header = document.querySelector('header')
 const main = document.querySelector('main')
@@ -31,9 +32,7 @@ header.appendChild(femaleCharsButton)
 header.appendChild(otherCharsButton)
 
 function populateDOM(characters) {
-  while (main.firstChild) {
-    main.removeChild(main.firstChild)
-  }
+  removeChildren(main)
   characters.forEach((person) => {
     let figure = document.createElement('figure')
     let figImage = document.createElement('img')
@@ -50,13 +49,5 @@ function populateDOM(characters) {
   })
 }
 
-function getLastNumber(url) {
-  let end = url.lastIndexOf('/')
-  let start = end - 2
-  if (url.charAt(start) === '/') {
-    start++
-  }
-  return url.slice(start, end)
-}
 
 populateDOM(people);
