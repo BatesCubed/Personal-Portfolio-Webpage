@@ -6,9 +6,6 @@ const allCongressMembers = [...senators, ...representatives]
 
 const membersDiv = document.querySelector('.membersDiv')
 
-const houseButton = document.querySelector('#house')
-const senateButton = document.querySelector('#senatorsButton')
-
 const seniorMemberSpan = document.querySelector('#seniorMember')
 const vacationerSpan = document.querySelector('#vacationer')
 const loyalMemberList = document.querySelector('#loyalMembers')
@@ -34,6 +31,30 @@ mostLoyalMembers.forEach(member => {
 seniorMemberSpan.textContent = mostSeniorMember.name
 vacationerSpan.textContent = `${biggestVacationer.name} ${biggestVacationer.missedVotesPct}`
 
+/*This is the section for configuring filters*/
+const allInputs = document.querySelectorAll('input')
+allInputs.forEach(input => input.addEventListener('change', () => configurator()))
+
+function configurator() {
+    let configuredArray = []
+    const checkedInputs = document.querySelectorAll('input:checked')
+    const checkedIds = []
+    checkedInputs.forEach(item => checkedIds.push(item.id))
+    //console.log(checkedIds)
+
+    if (checkedIds.includes('senate')) configuredArray = [...configuredArray, ...simplifiedMembers(senators)]
+    if (checkedIds.includes('house')) configuredArray = [...configuredArray, ...simplifiedMembers(representatives)]
+
+    if (checkedIds.includes('women')) configuredArray = [...configuredArray.filter(member => member.gender === 'F')]
+    if (checkedIds.includes('men')) configuredArray = [...configuredArray.filter(member => member.gender === 'M')]
+
+    if (checkedIds.includes('dems')) configuredArray = [...configuredArray.filter(member => member.party === 'D')]
+    if (checkedIds.includes('repubs')) configuredArray = [...configuredArray.filter(member => member.party === 'R')]
+
+    //console.log(configuredArray)
+    populateMembersDiv(configuredArray)
+}
+/* End of Configuration Array Section*/
 function simplifiedMembers(memberArray) {
     return memberArray.map(member => {
         const middleName = member.middle_name ? ` ${member.middle_name} ` : ` `
