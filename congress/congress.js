@@ -2,19 +2,26 @@ import { senators } from '../data/senators.js'
 import { representatives } from '../data/representatives.js'
 import { removeChildren } from '../utils/index.js'
 
+const allCongressMembers = [...senators, ...representatives]
+
 const membersDiv = document.querySelector('.membersDiv')
 
-const repsButton = document.querySelector('#repsButton')
-const senatorsButton = document.querySelector('#senatorsButton')
+const houseButton = document.querySelector('#house')
+const senateButton = document.querySelector('#senatorsButton')
 
-repsButton.addEventListener('click', () => populateMembersDiv(simplifiedReps))
-senatorsButton.addEventListener('click', () => populateMembersDiv(simplifiedSenators))
+const seniorMembersSpan = document.querySelector('#seniorMember')
+const vacationerSpan = document.querySelector('#vacationer')
 
-const senateRepubsButton = document.querySelector('#repubs')
-senateRepubsButton.addEventListener('click', () => {
-    const simplifiedRepublicanSenators = simplifiedSenators.filter(member => member.party === 'R')
-    populateMembersDiv(simplifiedRepublicanSenators)
+const mostSeniorMember = simplifiedMembers(allCongressMembers).reduce((acc, member) => {
+    return acc.seniority > member.seniority ? acc : member
 })
+
+const biggestVacationer = simplifiedMembers(allCongressMembers).reduce((acc, member) => {
+    return acc.missedVotesPct > member.missedVotesPct ? acc : member
+})
+
+seniorMembersSpan.textContent = mostSeniorMember.name
+vacationerSpan.textContent = biggestVacationer.name
 
 function simplifiedMembers(memberArray) {
     return memberArray.map(member => {
