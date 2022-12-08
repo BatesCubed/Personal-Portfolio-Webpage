@@ -9,8 +9,9 @@ const membersDiv = document.querySelector('.membersDiv')
 const houseButton = document.querySelector('#house')
 const senateButton = document.querySelector('#senatorsButton')
 
-const seniorMembersSpan = document.querySelector('#seniorMember')
+const seniorMemberSpan = document.querySelector('#seniorMember')
 const vacationerSpan = document.querySelector('#vacationer')
+const loyalMemberList = document.querySelector('#loyalMembers')
 
 const mostSeniorMember = simplifiedMembers(allCongressMembers).reduce((acc, member) => {
     return acc.seniority > member.seniority ? acc : member
@@ -20,8 +21,18 @@ const biggestVacationer = simplifiedMembers(allCongressMembers).reduce((acc, mem
     return acc.missedVotesPct > member.missedVotesPct ? acc : member
 })
 
-seniorMembersSpan.textContent = mostSeniorMember.name
-vacationerSpan.textContent = biggestVacationer.name
+const mostLoyalMembers = simplifiedMembers(allCongressMembers).filter(member => {
+    return member.loyaltyPct === 100
+})
+
+mostLoyalMembers.forEach(member => {
+    let listItem = document.createElement('li')
+    listItem.textContent = member.name
+    loyalMemberList.appendChild(listItem)
+})
+
+seniorMemberSpan.textContent = mostSeniorMember.name
+vacationerSpan.textContent = `${biggestVacationer.name} ${biggestVacationer.missedVotesPct}`
 
 function simplifiedMembers(memberArray) {
     return memberArray.map(member => {
