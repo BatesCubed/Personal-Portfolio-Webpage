@@ -8,21 +8,53 @@ main {
     display: flex;
 }
 
-.shipArea {
-    background-color: aqua;
-    height: 100vh;
+.shipViewer {
+    display: block;
+    position: fixed;
+    padding: 0 30 0 30;
+    top: 40%;
+}
+
+.shipViewer img {
+    height: 20vw;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .navList {
     list-style-type: none;
     margin: 1rem;
+    background-color: #EEEEEE;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 a {
     text-decoration: none;
-    font-size: x-large;
+    font-size: 14px;
+    padding: 0.2rem;
+    font-weight: 500;
+
 }
 
 li {
     padding: .10rem;
+    text-align: center;
+    width: 180px;
+}
+
+header {
+    font-size: 32px;
+    font-family: 'Verdana', sans-serif;
+    text-align: center;
+}
+
+header h3 {
+    font-size: 16px;
 }
