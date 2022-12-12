@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Bungee', cursive;
+    font-family: 'Raleway', sans-serif;
+}
+
+
+body {
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.herotext {
+    text-align: center;
+    padding: 1rem;
+    font-size: 3rem;
+}
+
+#ringSection {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#ringSection img {
+    width: 200px;
+    padding: 1rem;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+#ringSection figcaption {
+    padding: 1rem;
+}
+
+#ringSection figure {
+    text-align: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    background-color: #EEEEEE;
+    margin: 1rem;
+    box-shadow: 3px 3px 20px #979797;
+    border-radius: 10px;
+}
+
+#ringSection figure:hover {
+    box-shadow: 3px 3px 20px #464646;
+}
+
+#ringSection p {
+    display: block;
+    position: relative;
+    top: 25px;
+    left: 10px;
+    padding: 0.4rem;
+    background-color: #0baf2e;
+    color: white;
+    border-radius: 20px;
+    width: 20%;
+}
+
+header {
+    background-color: black;
+}
+
+header img {
+    width: 50px;
+}
+
+.logoTitle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 1.3rem;
+}
+
+.headerContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    background-color: black;
+    padding: 1rem;
+}
+
+.headerContent h1 {
+    padding-left: 1rem;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+}
+
+nav button {
+    font-size: 1.2rem;
+    padding: 1rem;
+    background-color: #000000;
+    color: white;
+}
