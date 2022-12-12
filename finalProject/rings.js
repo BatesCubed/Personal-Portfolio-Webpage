@@ -2,11 +2,14 @@ import { ringObj } from '../data/items.js'
 
 let ringShop = document.querySelector('#ringSection')
 
+const backFocus = document.querySelector('.backgroundFocus')
+const itemFocus = document.querySelector('.itemFocus')
+
 for (let i = 0; i < ringObj.length; i++) {
-    let figure = document.createElement('figure')
-    let figImg = document.createElement('img')
-    let figCaption = document.createElement('figcaption')
-    let figP = document.createElement('p')
+    const figure = document.createElement('figure')
+    const figImg = document.createElement('img')
+    const figCaption = document.createElement('figcaption')
+    const figP = document.createElement('p')
 
     figImg.src = ringObj[i].ringImg
 
@@ -16,8 +19,9 @@ for (let i = 0; i < ringObj.length; i++) {
     figure.appendChild(figImg)
     figure.appendChild(figCaption)
     ringShop.appendChild(figure)
-}
-
-figure.addEventListener('click', () => {
     
-})
+    figure.addEventListener('click', () => {
+        backFocus.style.display = "inline";
+        itemFocus.style.display = "inline";
+    })
+}

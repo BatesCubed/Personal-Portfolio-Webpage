@@ -3,10 +3,11 @@
     padding: 0;
     font-family: 'Bungee', cursive;
     font-family: 'Raleway', sans-serif;
+    scroll-behavior: smooth;
 }
 
 
-body {
+.mainPageContent {
     max-width: 80%;
     margin: 0 auto;
 }
@@ -20,7 +21,7 @@ body {
 #ringSection {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 #ringSection img {
@@ -99,4 +100,43 @@ nav button {
     padding: 1rem;
     background-color: #000000;
     color: white;
+}
+
+nav button:hover {
+    background-color: #0a84b4;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.backgroundFocus {
+    background-color: rgba(0,0,0, 0.4);
+    z-index: 2;
+    display: none;
+    position: fixed;
+    top: 0px;
+    width: 100vw;
+    height: 100vh;
+}
+
+.backgroundFocus {
+    background-color: rgba(0,0,0, 0.4);
+    z-index: 1;
+    display: none;
+    position: fixed;
+    top: 0px;
+    width: 100vw;
+    height: 100vh;
+}
+
+.itemFocus {
+    background-color: #FFFFFF;
+    display: none;
+    position: fixed;
+    z-index: 2;
+    top: 10%;
+    left: 9.6%;
+    margin: auto;
+    width: 80vw;
+    height: 80vh;
+    border-radius: 20px;
 }
