@@ -1,4 +1,5 @@
 import { ringObj } from '../data/items.js'
+import { removeChildren } from '../utils/index.js'
 
 var ringShop = document.querySelector('#ringSection')
 
@@ -84,4 +85,3 @@ for (let i = 0; i < cartInv.length; i++) {
     cartView.appendChild(cartFigure)
 
 }
- 
