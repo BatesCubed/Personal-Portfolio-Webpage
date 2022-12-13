@@ -104,7 +104,6 @@ nav button {
 
 nav button:hover {
     background-color: #0a84b4;
-    border-radius: 20px;
     cursor: pointer;
 }
 
@@ -157,15 +156,31 @@ nav button:hover {
     display: flex;
     justify-content: space-between;
     width: 20%;
+    cursor: pointer;
 }
-button {
+.addToCart button {
     background-color: #0baf2e;
     color: white;
     border: none;
     font-size: 2rem;
     width: 80%;
+    cursor: pointer;
 }
 
 .addToCart img {
     width: 50px;
+    cursor: pointer;
+}
+
+.cartButton {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 3rem;
+    width: 8%;
+    background-color: #0a84b4;
+    padding: 1rem;
+    text-decoration: none;
+    color: white;
+
 }
