@@ -4,7 +4,6 @@
     box-sizing: border-box;
     font-family: sans-serif;
     font-size: 16px;
-    background-color:#EEEEEE;
 }
 
 .singleMemberDiv {
@@ -51,14 +50,15 @@ fieldset {
   padding: 1rem;
   border-radius: 10px;
   border: none;
+  background-color: #EEEEEE;
 }
 
 legend {
     border: none;
     padding: 0.5rem;
     border-radius: 10px;
+    background-color: #EEEEEE;
 }
-
 
 button {
     border: none;
@@ -121,6 +121,12 @@ button {
     background: linear-gradient(#e66465, #5a0101);
     transform: rotateY(180deg);
     border-radius: 10px;
+    padding: 5px;
+  }
+
+  .card__face--back h4, .card__face--back h3{
+      background-color: none;
+      color: white;
   }
 
   .details {

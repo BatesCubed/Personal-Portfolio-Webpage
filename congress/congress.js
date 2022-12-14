@@ -132,7 +132,6 @@ function populateMembersDiv(memberArray) {
     // if (member.party === 'R') card.className = 'card republican'
     // if (member.party === 'D') card.className = 'card democrat'
     card.addEventListener('click', () => {
-      console.log('You clicked?')
       card.classList.toggle('is-flipped')
     })
 
