@@ -142,6 +142,7 @@ nav button:hover {
 
 .xButton {
     height: 50px;
+    width: 50px;
     float: right;
     margin: 30px 30px 0px 0px;
     cursor: pointer;
@@ -154,7 +155,7 @@ nav button:hover {
     border: none;
     font-size: 1rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 20%;
     cursor: pointer;
 }
@@ -163,7 +164,7 @@ nav button:hover {
     color: white;
     border: none;
     font-size: 2rem;
-    width: 80%;
+    width: 60%;
     cursor: pointer;
 }
 
@@ -183,4 +184,50 @@ nav button:hover {
     text-decoration: none;
     color: white;
 
+}
+
+.itemFocusContent {
+    padding: 30px;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 90%;
+}
+
+.itemFocusContent .ringImage {
+    display: flex;
+    width: auto;
+    height: 400px;
+    justify-content: center;
+}
+
+.itemFocusContent .addToCart {
+    width: 60%;
+}
+
+.itemFocusContent .textContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    width: 50%;
+}
+
+.ringDesc {
+    font-size: 1.5rem;
+}
+
+.ringName {
+    font-size: 3rem;
+}
+
+.ringPrice {
+    font-size: 2.4rem;
+}
+
+.ringSelectionTitle {
+    text-align: center;
+    text-decoration: underline;
+    font-size: 2rem;
 }
